@@ -1,6 +1,6 @@
 {% set name = "pcre2" %}
-{% set version = "10.30" %}
-{% set sha256 = "b549873a39f804480c2e6145a78adcba53e38162d90ef6ea92384f6ecf2fde76" %}
+{% set version = "10.21" %}
+{% set sha256 = "1cfd43caffe07fe7f2cfafc74c8f0d87b38d80bbb63226a1193407476508e317" %}
 
 package:
   name: {{ name|lower }}
