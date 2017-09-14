@@ -10,10 +10,17 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    ##########################################################
+    # Apply an upstream patch to fix a broken test on macOS  #
+    #                                                        #
+    # ref: https://bugs.exim.org/show_bug.cgi?id=2157        #
+    ##########################################################
+    - bug_2157.patch
 
 build:
-  number: 1
-  skip: True  # [not linux]
+  number: 2
+  skip: True  # [win]
 
 requirements:
   build:
