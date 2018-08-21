@@ -19,7 +19,7 @@ source:
     - bug_2157.patch
 
 build:
-  number: 2
+  number: 1002
   skip: True  # [win]
 
 requirements:
