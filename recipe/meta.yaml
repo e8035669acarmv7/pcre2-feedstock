@@ -27,7 +27,7 @@ requirements:
     - {{ compiler('c') }}
 
 test:
-  command:
+  commands:
     - pcre2test --version
     - pcre2grep --version
     - pcre2-config --version
@@ -52,3 +52,4 @@ about:
 extra:
   recipe-maintainers:
     - dfornika
+    - mariusvniekerk
