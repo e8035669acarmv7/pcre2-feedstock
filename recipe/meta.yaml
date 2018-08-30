@@ -1,6 +1,6 @@
 {% set name = "pcre2" %}
-{% set version = "10.30" %}
-{% set sha256 = "b549873a39f804480c2e6145a78adcba53e38162d90ef6ea92384f6ecf2fde76" %}
+{% set version = "10.31" %}
+{% set sha256 = "e11ebd99dd23a7bccc9127d95d9978101b5f3cf0a6e7d25a1b1ca165a97166c4" %}
 
 package:
   name: {{ name|lower }}
@@ -16,15 +16,16 @@ source:
     #                                                        #
     # ref: https://bugs.exim.org/show_bug.cgi?id=2157        #
     ##########################################################
-    - bug_2157.patch
+    # - bug_2157.patch
 
 build:
-  number: 1002
+  number: 1000
   skip: True  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
 
 test:
   commands:
@@ -32,9 +33,10 @@ test:
     - pcre2grep --version
     - pcre2-config --version
     - test -f ${PREFIX}/include/pcre2.h
-    - test -f ${PREFIX}/include/pcre2-posix.h
-    - test -f ${PREFIX}/lib/libpcre2-posix.a  # [unix]
-    - test -f ${PREFIX}/lib/libpcre2-posix.so  # [linux]
+    - test -f ${PREFIX}/include/pcre2posix.h
+    - test -f ${PREFIX}/lib/libpcre2-posix.a      # [unix]
+    - test -f ${PREFIX}/lib/libpcre2-posix.so     # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-posix.dylib  # [osx]
 
 about:
   home: http://www.pcre.org/
