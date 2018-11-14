@@ -1,15 +1,12 @@
-{% set name = "pcre2" %}
 {% set version = "10.31" %}
-{% set sha256 = "e11ebd99dd23a7bccc9127d95d9978101b5f3cf0a6e7d25a1b1ca165a97166c4" %}
 
 package:
-  name: {{ name|lower }}
+  name: pcre2
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-{{ version }}.tar.gz
+  sha256: e11ebd99dd23a7bccc9127d95d9978101b5f3cf0a6e7d25a1b1ca165a97166c4
   patches:
     ##########################################################
     # Apply an upstream patch to fix a broken test on macOS  #
@@ -19,7 +16,7 @@ source:
     # - bug_2157.patch
 
 build:
-  number: 1000
+  number: 1001
   skip: True  # [win]
 
 requirements:
@@ -35,8 +32,7 @@ test:
     - test -f ${PREFIX}/include/pcre2.h
     - test -f ${PREFIX}/include/pcre2posix.h
     - test -f ${PREFIX}/lib/libpcre2-posix.a      # [unix]
-    - test -f ${PREFIX}/lib/libpcre2-posix.so     # [linux]
-    - test -f ${PREFIX}/lib/libpcre2-posix.dylib  # [osx]
+    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}     # [not win]
 
 about:
   home: http://www.pcre.org/
