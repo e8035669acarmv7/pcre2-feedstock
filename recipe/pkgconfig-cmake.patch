@@ -1,0 +1,61 @@
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(revision 1244)
++++ CMakeLists.txt	(working copy)
+@@ -424,8 +424,43 @@
+                ${PROJECT_BINARY_DIR}/pcre2.h
+                @ONLY)
+ 
+-# What about pcre2-config and libpcre2.pc?
++# Generate pkg-config files
+ 
++SET(PACKAGE_VERSION "${PCRE2_MAJOR}.${PCRE2_MINOR}")
++SET(prefix ${CMAKE_INSTALL_PREFIX})
++
++SET(exec_prefix "\${prefix}")
++SET(libdir "\${exec_prefix}/lib")
++SET(includedir "\${prefix}/include")
++CONFIGURE_FILE(libpcre2-posix.pc.in libpcre2-posix.pc @ONLY)
++SET(pkg_config_files ${pkg_config_files} "${CMAKE_CURRENT_BINARY_DIR}/libpcre2-posix.pc")
++
++IF(PCRE2_BUILD_PCRE2_8)
++  CONFIGURE_FILE(libpcre2-8.pc.in libpcre2-8.pc @ONLY)
++  SET(pkg_config_files ${pkg_config_files} "${CMAKE_CURRENT_BINARY_DIR}/libpcre2-8.pc")
++  SET(enable_pcre2_8 "yes")
++ELSE()
++  SET(enable_pcre2_8 "no")
++ENDIF()
++
++IF(PCRE2_BUILD_PCRE2_16)
++  CONFIGURE_FILE(libpcre2-16.pc.in libpcre2-16.pc @ONLY)
++  SET(pkg_config_files ${pkg_config_files} "${CMAKE_CURRENT_BINARY_DIR}/libpcre2-16.pc")
++  SET(enable_pcre2_16 "yes")
++ELSE()
++  SET(enable_pcre2_16 "no")
++ENDIF()
++
++IF(PCRE2_BUILD_PCRE2_32)
++  CONFIGURE_FILE(libpcre2-32.pc.in libpcre2-32.pc @ONLY)
++  SET(pkg_config_files ${pkg_config_files} "${CMAKE_CURRENT_BINARY_DIR}/libpcre2-32.pc")
++  SET(enable_pcre2_32 "yes")
++ELSE()
++  SET(enable_pcre2_32 "no")
++ENDIF()
++
++CONFIGURE_FILE(pcre2-config.in pcre2-config @ONLY)
++
+ # Character table generation
+ 
+ OPTION(PCRE2_REBUILD_CHARTABLES "Rebuild char tables" OFF)
+@@ -763,6 +798,11 @@
+         RUNTIME DESTINATION bin
+         LIBRARY DESTINATION lib
+         ARCHIVE DESTINATION lib)
++INSTALL(FILES ${pkg_config_files} DESTINATION lib/pkgconfig)
++INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/pcre2-config"
++  DESTINATION bin
++  # Set 0755 permissions
++  PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+ 
+ INSTALL(FILES ${PCRE2_HEADERS} ${PCRE2POSIX_HEADERS} DESTINATION include)
+ 

@@ -1,42 +1,63 @@
-{% set version = "10.31" %}
+{% set name = "pcre2" %}
+{% set version = "10.34" %}
 
 package:
-  name: pcre2
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-{{ version }}.tar.gz
-  sha256: e11ebd99dd23a7bccc9127d95d9978101b5f3cf0a6e7d25a1b1ca165a97166c4
+  url: https://ftp.pcre.org/pub/pcre/{{ name }}-{{ version }}.tar.bz2
+  sha256: 74c473ffaba9e13db6951fd146e0143fe9887852ce73406a03277af1d9b798ca
   patches:
-    ##########################################################
-    # Apply an upstream patch to fix a broken test on macOS  #
-    #                                                        #
-    # ref: https://bugs.exim.org/show_bug.cgi?id=2157        #
-    ##########################################################
-    # - bug_2157.patch
+    # https://bugs.exim.org/show_bug.cgi?id=2558
+    - cmake-soversion.patch
+    # https://bugs.exim.org/show_bug.cgi?id=2557
+    - pkgconfig-cmake.patch
 
 build:
-  number: 1001
-  skip: True  # [win]
+  number: 0
+  run_exports:
+    # https://abi-laboratory.pro/index.php?view=timeline&l=pcre2
+    - {{ pin_subpackage("pcre2", max_pin="x.x") }}
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - cmake
+    - ninja
+  host:
+    - bzip2
+    - zlib
 
 test:
   commands:
     - pcre2test --version
     - pcre2grep --version
-    - pcre2-config --version
-    - test -f ${PREFIX}/include/pcre2.h
-    - test -f ${PREFIX}/include/pcre2posix.h
-    - test -f ${PREFIX}/lib/libpcre2-posix.a      # [unix]
-    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}     # [not win]
+
+    - pcre2-config --version                                  # [not win]
+    - test -f ${PREFIX}/include/pcre2.h                       # [not win]
+    - test -f ${PREFIX}/include/pcre2posix.h                  # [not win]
+    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}        # [not win]
+    - test -f ${PREFIX}/lib/libpcre2-posix.2${SHLIB_EXT}      # [osx]
+    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.2      # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.2.0.3  # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}            # [not win]
+    - test -f ${PREFIX}/lib/libpcre2-8.0${SHLIB_EXT}          # [osx]
+    - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0          # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.9.0      # [linux]
+    - test -f ${PREFIX}/lib/pkgconfig/libpcre2-8.pc           # [not win]
+    - test -f ${PREFIX}/lib/pkgconfig/libpcre2-posix.pc       # [not win]
+
+    - if not exist %LIBRARY_INC%\\pcre2.h exit 1                              # [win]
+    - if not exist %LIBRARY_INC%\\pcre2posix.h exit 1                         # [win]
+    - if not exist %LIBRARY_BIN%\\pcre2-8.dll exit 1                          # [win]
+    - if not exist %LIBRARY_BIN%\\pcre2-posix.dll exit 1                      # [win]
+    - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-posix.pc exit 1  # [win]
+    - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-8.pc exit 1      # [win]
 
 about:
   home: http://www.pcre.org/
-  license: PCRE2
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENCE
   summary: 'Regular expression pattern matching using Perl 5 syntax and semantics.'
@@ -51,3 +72,4 @@ extra:
   recipe-maintainers:
     - dfornika
     - mariusvniekerk
+    - xhochy

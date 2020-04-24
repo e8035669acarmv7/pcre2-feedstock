@@ -8,13 +8,17 @@
 CFLAGS="${CFLAGS} -O3"
 CXXFLAGS="${CXXFLAGS} -O3"
 
-./configure \
-    --prefix="${PREFIX}" \
-    --enable-jit \
+mkdir build_cmake
+pushd build_cmake
+cmake \
+    -DBUILD_SHARED_LIBS=ON \
+    -DCMAKE_BUILD_TYPE=release \
+    -DCMAKE_INSTALL_LIBDIR=lib \
+    -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DPCRE2_SUPPORT_JIT=ON \
+    -GNinja \
+    ..
 
-make -j${CPU_COUNT} ${VERBOSE_AT}
-make check
-make install
-
-# We can remove this when we start using the new conda-build.
-find $PREFIX -name '*.la' -delete
+ninja
+ninja test
+ninja install
