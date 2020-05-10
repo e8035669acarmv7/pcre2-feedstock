@@ -8,11 +8,6 @@ package:
 source:
   url: https://ftp.pcre.org/pub/pcre/{{ name }}-{{ version }}.tar.bz2
   sha256: 9ccba8e02b0ce78046cdfb52e5c177f0f445e421059e43becca4359c669d4613
-  patches:
-    # https://bugs.exim.org/show_bug.cgi?id=2558
-    - cmake-soversion.patch
-    # https://bugs.exim.org/show_bug.cgi?id=2557
-    - pkgconfig-cmake.patch
 
 build:
   number: 0
