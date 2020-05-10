@@ -20,6 +20,7 @@ requirements:
     - {{ compiler('c') }}
     - cmake
     - ninja
+    - m2-sed  # [win]
   host:
     - bzip2
     - zlib
