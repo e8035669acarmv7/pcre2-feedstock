@@ -39,7 +39,7 @@ test:
     - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}            # [not win]
     - test -f ${PREFIX}/lib/libpcre2-8.0${SHLIB_EXT}          # [osx]
     - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0          # [linux]
-    - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.9.0      # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.10.0      # [linux]
     - test -f ${PREFIX}/lib/pkgconfig/libpcre2-8.pc           # [not win]
     - test -f ${PREFIX}/lib/pkgconfig/libpcre2-posix.pc       # [not win]
 
