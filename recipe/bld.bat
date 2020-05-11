@@ -15,6 +15,8 @@ if errorlevel 1 exit 1
 ninja
 if errorlevel 1 exit 1
 sed -ie "s/\$<TARGET_FILE:pcre2test>/pcre2test.exe/" pcre2_test.bat
+cp -r ..\testdata .
+if errorlevel 1 exit 1
 ninja test
 if errorlevel 1 exit 1
 ninja install
