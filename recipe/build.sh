@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/libtool/build-aux/config.* .
 
 # Not only does this hopefully make pcre2 faster,
 # it fixes a test failure on macOS. See link below.
@@ -22,5 +20,7 @@ cmake ${CMAKE_ARGS} \
     ..
 
 ninja
-ninja test
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  ninja test
+fi
 ninja install
