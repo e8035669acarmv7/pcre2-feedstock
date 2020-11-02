@@ -10,14 +10,13 @@ source:
   sha256: 9ccba8e02b0ce78046cdfb52e5c177f0f445e421059e43becca4359c669d4613
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=pcre2
     - {{ pin_subpackage("pcre2", max_pin="x.x") }}
 
 requirements:
   build:
-    - libtool  # [unix]
     - {{ compiler('c') }}
     - cmake
     - ninja
