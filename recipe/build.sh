@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/libtool/build-aux/config.* .
 
 # Not only does this hopefully make pcre2 faster,
 # it fixes a test failure on macOS. See link below.
@@ -10,7 +12,7 @@ CXXFLAGS="${CXXFLAGS} -O3"
 
 mkdir build_cmake
 pushd build_cmake
-cmake \
+cmake ${CMAKE_ARGS} \
     -DBUILD_SHARED_LIBS=ON \
     -DCMAKE_BUILD_TYPE=release \
     -DCMAKE_INSTALL_LIBDIR=lib \
