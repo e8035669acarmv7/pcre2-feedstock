@@ -10,7 +10,7 @@ CXXFLAGS="${CXXFLAGS} -O3"
 
 mkdir build_cmake
 pushd build_cmake
-cmake \
+cmake ${CMAKE_ARGS} \
     -DBUILD_SHARED_LIBS=ON \
     -DCMAKE_BUILD_TYPE=release \
     -DCMAKE_INSTALL_LIBDIR=lib \
@@ -20,5 +20,7 @@ cmake \
     ..
 
 ninja
-ninja test
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  ninja test
+fi
 ninja install
