@@ -8,6 +8,12 @@
 CFLAGS="${CFLAGS} -O3"
 CXXFLAGS="${CXXFLAGS} -O3"
 
+if [[ "$target_platform" == "osx-arm64" ]]; then
+    CMAKE_ARGS="${CMAKE_ARGS} -DPCRE2_SUPPORT_JIT=OFF"
+else
+    CMAKE_ARGS="${CMAKE_ARGS} -DPCRE2_SUPPORT_JIT=ON"
+fi
+
 mkdir build_cmake
 pushd build_cmake
 cmake ${CMAKE_ARGS} \
@@ -15,7 +21,6 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_BUILD_TYPE=release \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DPCRE2_SUPPORT_JIT=ON \
     -GNinja \
     ..
 
