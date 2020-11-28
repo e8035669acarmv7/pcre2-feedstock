@@ -10,6 +10,7 @@ CXXFLAGS="${CXXFLAGS} -O3"
 
 if [[ "$target_platform" == "osx-64" ]]; then
     CXXFLAGS="$CXXFLAGS -DTARGET_OS_OSX=1"
+    CFLAGS="$CFLAGS -DTARGET_OS_OSX=1"
 fi
 
 if [[ "$target_platform" == "osx-arm64" ]]; then
