@@ -1,5 +1,5 @@
 {% set name = "pcre2" %}
-{% set version = "10.35" %}
+{% set version = "10.36" %}
 
 package:
   name: {{ name }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://ftp.pcre.org/pub/pcre/{{ name }}-{{ version }}.tar.bz2
-  sha256: 9ccba8e02b0ce78046cdfb52e5c177f0f445e421059e43becca4359c669d4613
+  sha256: a9ef39278113542968c7c73a31cfcb81aca1faa64690f400b907e8ab6b4a665c
 
 build:
-  number: 2
+  number: 0
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=pcre2
     - {{ pin_subpackage("pcre2", max_pin="x.x") }}
