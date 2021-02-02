@@ -8,6 +8,8 @@ cmake ^
     -DCMAKE_BUILD_TYPE=release ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DPCRE2_SUPPORT_JIT=ON ^
+    -DPCRE2_BUILD_PCRE2_16=ON ^
+    -DPCRE2_BUILD_PCRE2_32=ON ^
     -GNinja ^
     ..
 if errorlevel 1 exit 1
