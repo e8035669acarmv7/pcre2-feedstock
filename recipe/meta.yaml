@@ -58,9 +58,13 @@ test:
     - if not exist %LIBRARY_INC%\\pcre2.h exit 1                              # [win]
     - if not exist %LIBRARY_INC%\\pcre2posix.h exit 1                         # [win]
     - if not exist %LIBRARY_BIN%\\pcre2-8.dll exit 1                          # [win]
+    - if not exist %LIBRARY_BIN%\\pcre2-16.dll exit 1                          # [win]
+    - if not exist %LIBRARY_BIN%\\pcre2-32.dll exit 1                          # [win]
     - if not exist %LIBRARY_BIN%\\pcre2-posix.dll exit 1                      # [win]
     - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-posix.pc exit 1  # [win]
     - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-8.pc exit 1      # [win]
+    - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-16.pc exit 1      # [win]
+    - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-32.pc exit 1      # [win]
 
 about:
   home: http://www.pcre.org/
