@@ -26,6 +26,8 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_BUILD_TYPE=release \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DPCRE2_BUILD_PCRE2_16=ON \
+    -DPCRE2_BUILD_PCRE2_32=ON \
     -GNinja \
     ..
 
