@@ -1,5 +1,5 @@
 {% set name = "pcre2" %}
-{% set version = "10.36" %}
+{% set version = "10.37" %}
 
 package:
   name: {{ name }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://ftp.pcre.org/pub/pcre/{{ name }}-{{ version }}.tar.bz2
-  sha256: a9ef39278113542968c7c73a31cfcb81aca1faa64690f400b907e8ab6b4a665c
+  sha256: 4d95a96e8b80529893b4562be12648d798b957b1ba1aae39606bbc2ab956d270
 
 build:
-  number: 1
+  number: 0
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=pcre2
     - {{ pin_subpackage("pcre2", max_pin="x.x") }}
@@ -35,21 +35,21 @@ test:
     - test -f ${PREFIX}/include/pcre2.h                       # [not win]
     - test -f ${PREFIX}/include/pcre2posix.h                  # [not win]
     - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}        # [not win]
-    - test -f ${PREFIX}/lib/libpcre2-posix.2${SHLIB_EXT}      # [osx]
-    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.2      # [linux]
-    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.2.0.3  # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-posix.3${SHLIB_EXT}      # [osx]
+    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.3      # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.3.0.0  # [linux]
     - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}            # [not win]
     - test -f ${PREFIX}/lib/libpcre2-8.0${SHLIB_EXT}          # [osx]
     - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0          # [linux]
-    - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.10.1      # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.10.2      # [linux]
     - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}            # [not win]
     - test -f ${PREFIX}/lib/libpcre2-16.0${SHLIB_EXT}          # [osx]
     - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0          # [linux]
-    - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0.10.1      # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0.10.2      # [linux]
     - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}            # [not win]
     - test -f ${PREFIX}/lib/libpcre2-32.0${SHLIB_EXT}          # [osx]
     - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0          # [linux]
-    - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0.10.1      # [linux]
+    - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0.10.2      # [linux]
     - test -f ${PREFIX}/lib/pkgconfig/libpcre2-8.pc           # [not win]
     - test -f ${PREFIX}/lib/pkgconfig/libpcre2-16.pc           # [not win]
     - test -f ${PREFIX}/lib/pkgconfig/libpcre2-32.pc           # [not win]
