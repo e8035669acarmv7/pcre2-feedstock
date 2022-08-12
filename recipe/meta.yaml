@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/PCRE2Project/pcre2/archive/refs/tags/pcre2-{{ version }}.tar.gz
-  sha256: 4d95a96e8b80529893b4562be12648d798b957b1ba1aae39606bbc2ab956d270
+  sha256: 1fcca04e3e27723c9e58353e8868b875a07ba82e276aa0c3bc0fc96605189064
 
 build:
   number: 1
