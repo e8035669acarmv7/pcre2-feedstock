@@ -10,7 +10,7 @@ source:
   sha256: 4d95a96e8b80529893b4562be12648d798b957b1ba1aae39606bbc2ab956d270
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=pcre2
     - {{ pin_subpackage("pcre2", max_pin="x.x") }}
