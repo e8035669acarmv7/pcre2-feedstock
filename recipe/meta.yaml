@@ -52,7 +52,7 @@ outputs:
       - Library/include/pcre2*.h             # [win]
       - Library/lib/pcre2-*.lib              # [win]
       - Library/lib/pkgconfig/libpcre2-*.pc  # [win]
-      - Library/cmake/*/pcre2-*.cmake        # [win]
+      - Library/cmake/pcre2-*.cmake          # [win]
       - Library/man/*/pcre2*                 # [win]
       - Library/share/doc/pcre2              # [win]
     test:
