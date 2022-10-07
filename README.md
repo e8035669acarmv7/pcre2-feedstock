@@ -97,6 +97,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pcre2-green.svg)](https://anaconda.org/conda-forge/pcre2) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pcre2.svg)](https://anaconda.org/conda-forge/pcre2) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pcre2.svg)](https://anaconda.org/conda-forge/pcre2) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pcre2.svg)](https://anaconda.org/conda-forge/pcre2) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pcre2--static-green.svg)](https://anaconda.org/conda-forge/pcre2-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pcre2-static.svg)](https://anaconda.org/conda-forge/pcre2-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pcre2-static.svg)](https://anaconda.org/conda-forge/pcre2-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pcre2-static.svg)](https://anaconda.org/conda-forge/pcre2-static) |
 
 Installing pcre2
 ================
@@ -108,16 +109,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pcre2` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `pcre2, pcre2-static` can be installed with `conda`:
 
 ```
-conda install pcre2
+conda install pcre2 pcre2-static
 ```
 
 or with `mamba`:
 
 ```
-mamba install pcre2
+mamba install pcre2 pcre2-static
 ```
 
 It is possible to list all of the versions of `pcre2` available on your platform with `conda`:
