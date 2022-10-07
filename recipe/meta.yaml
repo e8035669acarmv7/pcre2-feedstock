@@ -39,22 +39,22 @@ outputs:
         - bzip2
         - zlib
     files:
-      - bin/pcre2*                          # [unix]
-      - include/pcre2*.h                    # [unix]
-      - lib/pkgconfig/libpcre2*.pc          # [unix]
-      - lib/libpcre2*{{ SHLIB_EXT }}*       # [unix]
-      - lib/pkgconfig/pcre2-*.pc            # [unix]
-      - cmake/pcre2-*.cmake                 # [unix]
-      - man/*/pcre2*                        # [unix]
-      - share/doc/pcre2                     # [unix]
+      - bin/pcre2*                           # [unix]
+      - include/pcre2*.h                     # [unix]
+      - lib/pkgconfig/libpcre2*.pc           # [unix]
+      - lib/libpcre2*{{ SHLIB_EXT }}*        # [unix]
+      - lib/pkgconfig/pcre2-*.pc             # [unix]
+      - cmake/pcre2-*.cmake                  # [unix]
+      - man/*/pcre2*                         # [unix]
+      - share/doc/pcre2                      # [unix]
 
-      - Library/bin/pcre2*                  # [win]
-      - Library/include/pcre2*.h            # [win]
-      - Library/lib/pcre2-*.lib             # [win]
-      - Library/lib/pkgconfig/pcre2-*.pc    # [win]
-      - Library/cmake/*/pcre2-*.cmake       # [win]
-      - Library/man/*/pcre2*                # [win]
-      - Library/share/doc/pcre2             # [win]
+      - Library/bin/pcre2*                   # [win]
+      - Library/include/pcre2*.h             # [win]
+      - Library/lib/pcre2-*.lib              # [win]
+      - Library/lib/pkgconfig/libpcre2-*.pc  # [win]
+      - Library/cmake/*/pcre2-*.cmake        # [win]
+      - Library/man/*/pcre2*                 # [win]
+      - Library/share/doc/pcre2              # [win]
     test:
       commands:
         - pcre2test --version
@@ -92,10 +92,14 @@ outputs:
         - if not exist %LIBRARY_BIN%\\pcre2-16.dll exit 1                          # [win]
         - if not exist %LIBRARY_BIN%\\pcre2-32.dll exit 1                          # [win]
         - if not exist %LIBRARY_BIN%\\pcre2-posix.dll exit 1                       # [win]
-        - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-posix.pc exit 1  # [win]
-        - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-8.pc exit 1      # [win]
-        - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-16.pc exit 1     # [win]
-        - if not exist %LIBRARY_PREFIX%\\lib\\pkgconfig\\libpcre2-32.pc exit 1     # [win]
+        - if not exist %LIBRARY_LIB%\\pcre2-8.lib exit 1                           # [win]
+        - if not exist %LIBRARY_LIB%\\pcre2-16.lib exit 1                          # [win]
+        - if not exist %LIBRARY_LIB%\\pcre2-32.lib exit 1                          # [win]
+        - if not exist %LIBRARY_LIB%\\pcre2-posix.lib exit 1                       # [win]
+        - if not exist %LIBRARY_LIB%\\pkgconfig\\libpcre2-posix.pc exit 1          # [win]
+        - if not exist %LIBRARY_LIB%\\pkgconfig\\libpcre2-8.pc exit 1              # [win]
+        - if not exist %LIBRARY_LIB%\\pkgconfig\\libpcre2-16.pc exit 1             # [win]
+        - if not exist %LIBRARY_LIB%\\pkgconfig\\libpcre2-32.pc exit 1             # [win]
         - if not exist %LIBRARY_PREFIX%\\cmake\\pcre2-config.cmake exit 1          # [win]
         - if not exist %LIBRARY_PREFIX%\\cmake\\pcre2-config-version.cmake exit 1  # [win]
   - name: pcre2-static
@@ -113,14 +117,14 @@ outputs:
         - {{ pin_subpackage('pcre2', exact=True) }}
     test:
       commands:
-        - test -f $PREFIX/lib/libpcre2-8.a                        # [unix]
-        - test -f $PREFIX/lib/libpcre2-16.a                       # [unix]
-        - test -f $PREFIX/lib/libpcre2-32.a                       # [unix]
-        - test -f $PREFIX/lib/libpcre2-posix.a                    # [unix]
-        - if not exist %LIBRARY_LIB%\libpcre2-8_a.lib exit 1      # [win]
-        - if not exist %LIBRARY_LIB%\libpcre2-16_a.lib exit 1     # [win]
-        - if not exist %LIBRARY_LIB%\libpcre2-32_a.lib exit 1     # [win]
-        - if not exist %LIBRARY_LIB%\libpcre2-posix_a.lib exit 1  # [win]
+        - test -f $PREFIX/lib/libpcre2-8.a                             # [unix]
+        - test -f $PREFIX/lib/libpcre2-16.a                            # [unix]
+        - test -f $PREFIX/lib/libpcre2-32.a                            # [unix]
+        - test -f $PREFIX/lib/libpcre2-posix.a                         # [unix]
+        - if not exist %LIBRARY_LIB%\libpcre2-8-static.lib exit 1      # [win]
+        - if not exist %LIBRARY_LIB%\libpcre2-16-static.lib exit 1     # [win]
+        - if not exist %LIBRARY_LIB%\libpcre2-32-static.lib exit 1     # [win]
+        - if not exist %LIBRARY_LIB%\libpcre2-posix-static.lib exit 1  # [win]
 
 about:
   home: http://www.pcre.org/
