@@ -50,7 +50,10 @@ outputs:
 
       - Library/bin/pcre2*                   # [win]
       - Library/include/pcre2*.h             # [win]
-      - Library/lib/pcre2-*.lib              # [win]
+      - Library/lib/pcre2-8.lib              # [win]
+      - Library/lib/pcre2-16.lib             # [win]
+      - Library/lib/pcre2-32.lib             # [win]
+      - Library/lib/pcre2-posix.lib          # [win]
       - Library/lib/pkgconfig/libpcre2-*.pc  # [win]
       - Library/cmake/pcre2-*.cmake          # [win]
       - Library/man/*/pcre2*                 # [win]
@@ -104,8 +107,8 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\\cmake\\pcre2-config-version.cmake exit 1  # [win]
   - name: pcre2-static
     files:
-      - lib/libpcre2*.a*   # [unix]
-      - Library/lib/libpcre2_a.lib   # [win]
+      - lib/libpcre2*.a                      # [unix]
+      - Library/lib/pcre2-*-static.lib       # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -121,10 +124,10 @@ outputs:
         - test -f $PREFIX/lib/libpcre2-16.a                            # [unix]
         - test -f $PREFIX/lib/libpcre2-32.a                            # [unix]
         - test -f $PREFIX/lib/libpcre2-posix.a                         # [unix]
-        - if not exist %LIBRARY_LIB%\libpcre2-8-static.lib exit 1      # [win]
-        - if not exist %LIBRARY_LIB%\libpcre2-16-static.lib exit 1     # [win]
-        - if not exist %LIBRARY_LIB%\libpcre2-32-static.lib exit 1     # [win]
-        - if not exist %LIBRARY_LIB%\libpcre2-posix-static.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\pcre2-8-static.lib exit 1         # [win]
+        - if not exist %LIBRARY_LIB%\pcre2-16-static.lib exit 1        # [win]
+        - if not exist %LIBRARY_LIB%\pcre2-32-static.lib exit 1        # [win]
+        - if not exist %LIBRARY_LIB%\pcre2-posix-static.lib exit 1     # [win]
 
 about:
   home: http://www.pcre.org/
