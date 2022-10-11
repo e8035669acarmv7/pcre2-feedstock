@@ -36,4 +36,3 @@ ninja
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
   ninja test
 fi
-ninja install

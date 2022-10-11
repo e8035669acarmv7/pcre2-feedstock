@@ -28,6 +28,8 @@ requirements:
 
 outputs:
   - name: pcre2
+    script: build-shared.sh  # [unix]
+    script: bld-shared.bat   # [win]
     build:
       run_exports:
         # https://abi-laboratory.pro/index.php?view=timeline&l=pcre2
@@ -35,29 +37,13 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - cmake
+        - ninja
+        - posix  # [win]
       host:
         - bzip2
         - zlib
-    files:
-      - bin/pcre2*                           # [unix]
-      - include/pcre2*.h                     # [unix]
-      - lib/pkgconfig/libpcre2*.pc           # [unix]
-      - lib/libpcre2*{{ SHLIB_EXT }}*        # [unix]
-      - lib/pkgconfig/pcre2-*.pc             # [unix]
-      - cmake/pcre2-*.cmake                  # [unix]
-      - man/*/pcre2*                         # [unix]
-      - share/doc/pcre2                      # [unix]
 
-      - Library/bin/pcre2*                   # [win]
-      - Library/include/pcre2*.h             # [win]
-      - Library/lib/pcre2-8.lib              # [win]
-      - Library/lib/pcre2-16.lib             # [win]
-      - Library/lib/pcre2-32.lib             # [win]
-      - Library/lib/pcre2-posix.lib          # [win]
-      - Library/lib/pkgconfig/libpcre2-*.pc  # [win]
-      - Library/cmake/pcre2-*.cmake          # [win]
-      - Library/man/*/pcre2*                 # [win]
-      - Library/share/doc/pcre2              # [win]
     test:
       commands:
         - pcre2test --version
@@ -106,9 +92,8 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\\cmake\\pcre2-config.cmake exit 1          # [win]
         - if not exist %LIBRARY_PREFIX%\\cmake\\pcre2-config-version.cmake exit 1  # [win]
   - name: pcre2-static
-    files:
-      - lib/libpcre2*.a                      # [unix]
-      - Library/lib/pcre2-*-static.lib       # [win]
+    script: build-static.sh  # [unix]
+    script: bld-static.bat   # [win]
     requirements:
       build:
         - {{ compiler('c') }}
