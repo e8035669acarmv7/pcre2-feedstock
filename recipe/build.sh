@@ -23,6 +23,7 @@ mkdir build_cmake
 pushd build_cmake
 cmake ${CMAKE_ARGS} \
     -DBUILD_SHARED_LIBS=ON \
+    -DBUILD_STATIC_LIBS=ON \
     -DCMAKE_BUILD_TYPE=release \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -35,4 +36,3 @@ ninja
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
   ninja test
 fi
-ninja install
