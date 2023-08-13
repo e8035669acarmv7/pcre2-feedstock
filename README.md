@@ -1,11 +1,11 @@
-About pcre2
-===========
+About pcre2-feedstock
+=====================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pcre2-feedstock/blob/main/LICENSE.txt)
 
 Home: http://www.pcre.org/
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pcre2-feedstock/blob/main/LICENSE.txt)
 
 Summary: Regular expression pattern matching using Perl 5 syntax and semantics.
 
