@@ -1,5 +1,5 @@
 {% set name = "pcre2-split-recipe" %}
-{% set version = "10.40" %}
+{% set version = "10.42" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/PCRE2Project/pcre2/archive/refs/tags/pcre2-{{ version }}.tar.gz
-  sha256: a057381270857d01a1a8b2c2fcf176b1c3c6aea595d586649755c33a5843d52f
+  sha256: a8e52a9bd1bca8f51c5c24823adc2a99acb12288e289a6507090c1a4a4815010
 
 build:
   number: 0
@@ -29,7 +29,7 @@ requirements:
 outputs:
   - name: pcre2
     script: build-shared.sh  # [unix]
-    script: bld-shared.bat   # [win]
+    script: bld-shared.bat  # [win]
     build:
       run_exports:
         # https://abi-laboratory.pro/index.php?view=timeline&l=pcre2
@@ -55,19 +55,19 @@ outputs:
         - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}                         # [not win]
         - test -f ${PREFIX}/lib/libpcre2-posix.3${SHLIB_EXT}                       # [osx]
         - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.3                       # [linux]
-        - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.3.0.2                   # [linux]
+        - test -f ${PREFIX}/lib/libpcre2-posix${SHLIB_EXT}.3.0.4                   # [linux]
         - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}                             # [not win]
         - test -f ${PREFIX}/lib/libpcre2-8.0${SHLIB_EXT}                           # [osx]
         - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0                           # [linux]
-        - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.11.0                      # [linux]
+        - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.11.2                      # [linux]
         - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}                            # [not win]
         - test -f ${PREFIX}/lib/libpcre2-16.0${SHLIB_EXT}                          # [osx]
         - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0                          # [linux]
-        - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0.11.0                     # [linux]
+        - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0.11.2                     # [linux]
         - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}                            # [not win]
         - test -f ${PREFIX}/lib/libpcre2-32.0${SHLIB_EXT}                          # [osx]
         - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0                          # [linux]
-        - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0.11.0                     # [linux]
+        - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0.11.2                     # [linux]
         - test -f ${PREFIX}/lib/pkgconfig/libpcre2-8.pc                            # [not win]
         - test -f ${PREFIX}/lib/pkgconfig/libpcre2-16.pc                           # [not win]
         - test -f ${PREFIX}/lib/pkgconfig/libpcre2-32.pc                           # [not win]
@@ -93,7 +93,7 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\\cmake\\pcre2-config-version.cmake exit 1  # [win]
   - name: pcre2-static
     script: build-static.sh  # [unix]
-    script: bld-static.bat   # [win]
+    script: bld-static.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
