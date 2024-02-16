@@ -1,5 +1,5 @@
 {% set name = "pcre2-split-recipe" %}
-{% set version = "10.42" %}
+{% set version = "10.43" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/PCRE2Project/pcre2/archive/refs/tags/pcre2-{{ version }}.tar.gz
-  sha256: a8e52a9bd1bca8f51c5c24823adc2a99acb12288e289a6507090c1a4a4815010
+  sha256: f0048e26b02bdfaf43b8cec75030a9c2fe28552bf5caa693d3ccbf4d886fa930
 
 build:
   number: 0
