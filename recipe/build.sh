@@ -34,5 +34,5 @@ cmake ${CMAKE_ARGS} \
 
 ninja
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
-  ninja test
+  ctest --rerun-failed --output-on-failure
 fi

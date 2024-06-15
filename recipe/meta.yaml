@@ -1,5 +1,5 @@
 {% set name = "pcre2-split-recipe" %}
-{% set version = "10.43" %}
+{% set version = "10.44" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/PCRE2Project/pcre2/archive/refs/tags/pcre2-{{ version }}.tar.gz
-  sha256: f0048e26b02bdfaf43b8cec75030a9c2fe28552bf5caa693d3ccbf4d886fa930
+  sha256: 07a002e8216382a96f722bc4a831f3d77457fe3e9e62a6dff250a2dd0e9c5e6d
 
 build:
   number: 0
@@ -18,6 +18,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - cmake
     - ninja
     - posix  # [win]
@@ -37,6 +38,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - cmake
         - ninja
         - posix  # [win]
@@ -59,15 +61,15 @@ outputs:
         - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}                             # [not win]
         - test -f ${PREFIX}/lib/libpcre2-8.0${SHLIB_EXT}                           # [osx]
         - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0                           # [linux]
-        - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.12.0                      # [linux]
+        - test -f ${PREFIX}/lib/libpcre2-8${SHLIB_EXT}.0.13.0                      # [linux]
         - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}                            # [not win]
         - test -f ${PREFIX}/lib/libpcre2-16.0${SHLIB_EXT}                          # [osx]
         - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0                          # [linux]
-        - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0.12.0                     # [linux]
+        - test -f ${PREFIX}/lib/libpcre2-16${SHLIB_EXT}.0.13.0                     # [linux]
         - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}                            # [not win]
         - test -f ${PREFIX}/lib/libpcre2-32.0${SHLIB_EXT}                          # [osx]
         - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0                          # [linux]
-        - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0.12.0                     # [linux]
+        - test -f ${PREFIX}/lib/libpcre2-32${SHLIB_EXT}.0.13.0                     # [linux]
         - test -f ${PREFIX}/lib/pkgconfig/libpcre2-8.pc                            # [not win]
         - test -f ${PREFIX}/lib/pkgconfig/libpcre2-16.pc                           # [not win]
         - test -f ${PREFIX}/lib/pkgconfig/libpcre2-32.pc                           # [not win]
@@ -97,6 +99,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
       host:
         - bzip2
         - zlib
